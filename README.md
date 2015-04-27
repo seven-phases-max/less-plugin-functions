@@ -6,16 +6,18 @@ Write genuine [Less](http://lesscss.org) functions in Less itself.
 [![dependencies](https://david-dm.org/seven-phases-max/less-plugin-functions.svg)](https://david-dm.org/seven-phases-max/less-plugin-functions)
 [![dev dependencies](https://david-dm.org/seven-phases-max/less-plugin-functions/dev-status.svg)](https://david-dm.org/seven-phases-max/less-plugin-functions#info=devDependencies)
 
-This experimental "proof-of-concept" plugin extends [Less](http://lesscss.org) with a possibility to define functions directly in Less itself and use them just like regular [built-in functions](http://lesscss.org/functions/#functions-overview).
+This experimental "proof-of-concept" plugin extends [Less](http://lesscss.org) with a possibility to define custom functions directly in Less itself and use them just like regular [built-in functions](http://lesscss.org/features/#features-overview-feature-functions).
+
+Define `foo` function:
 ```less
-// define:
 .function {
     .foo(@x) {
         return: @x * 2;
     }
 }
-
-// use:
+```
+Use it:
+```less
 div {
     width: foo(21em); // -> 42em
 }
@@ -24,20 +26,151 @@ div {
 ## Installation
 
     npm install -g less-plugin-functions
-    
-## Using with [`lessc`](http://lesscss.org/usage/#command-line-usage)
+
+## Usage
 
     lessc --functions file.less
-    
-For more details about using plugins with the command line Less compiler see 
-[the corresponding section](http://lesscss.org/usage/#plugins-how-do-i-use-a-plugin-command-line) 
+
+For more details about using plugins with the command line Less compiler see
+[the corresponding section](http://lesscss.org/usage/#plugins-how-do-i-use-a-plugin-command-line)
 in the [Less documentation](http://lesscss.org).
 
-## Using with common Less tools
+Using with common Less tools:
 
 - [`grunt-contrib-less`](https://github.com/gruntjs/grunt-contrib-less#usage-examples)
 - [`gulp-less`](https://github.com/plus3network/gulp-less#using-plugins)
 
-## Programmatic Usage
+For more details on a programmatic Less plugin usage see [Using a plugin in code](http://lesscss.org/usage/#plugins-using-a-plugin-in-code).
 
-See [Using a plugin in code](http://lesscss.org/usage/#plugins-using-a-plugin-in-code).
+## Feature Details
+
+Custom functions recognizable by this plugin are defined as plain Less [mixins](http://lesscss.org/features/#mixins-parametric-feature) having either `.function-` prefix or being immediate descendant of a `.function` [namespace](http://lesscss.org/features/#features-overview-feature-namespaces-and-accessors). For example the following two snippets create the same function named `bar`.
+Using namespace:
+```less
+.function {
+    .bar() {
+        return: red;
+    }
+}
+```
+Using prefix:
+```less
+.function-bar() {
+	return: red;
+}
+```
+The defined function can be use same way and anywhere a CSS/Less function can:
+```less
+div {
+    background-color: bar();    // red
+    color: lighten(bar(), 13%); // #ff4242
+    // etc.
+}
+```
+Don't miss that the defined function name is `bar`, without any prefix or a dot.
+
+#### Supported functionality
+
+Since custom functions are defined as regular Less mixins, they inherit most of standard mixin behaviour and functionality. In particular:
+
+* [Overloading](http://lesscss.org/features/#mixins-parametric-feature-pattern-matching) (aka "Arguments Pattern Matching")
+* [Default Parameters](http://lesscss.org/features/#mixins-parametric-feature)
+* [Variadic Arguments](http://lesscss.org/features/#mixins-parametric-feature-advanced-arguments-and-the-rest-variable)
+* [Guards](http://lesscss.org/features/#mixin-guards-feature)
+
+#### Return Value
+
+Function return value is specified via `return` property.
+```less
+.function-foo() {
+    return: "Hello, I'm the foo return value.";
+}
+```
+Notice that since the return statement is just a regular CSS property it does not "return immediately", and any code after `return` is still in effect. Same way all default Less behavior of CSS properties applies to the `return` property as well.
+
+E.g. it can be overridden:
+```less
+.function-bar() {
+    return: 1;
+    return: 2;
+    // function returns 2
+}
+```
+[merged](http://lesscss.org/features/#merge-feature):
+```less
+.function-baz() {
+    return+: 1;
+    return+: 2;
+    // function returns 1, 2
+}
+```
+etc.
+
+#### Overriding CSS and built-in Less functions
+
+Custom function definitions override CSS or [built-in](http://lesscss.org/functions/#functions-overview) Less functions of the same
+name (certain performance critical functions are not overridable by default though, see [`-a` option](https://github.com/seven-phases-max/less-plugin-functions/tree/tmp#--always-override--alwaysoverride) below for more details). That is, you can "replace"/"extend" any Less or even CSS function by your own implementation.
+
+For example:
+```less
+// override `calc` globally:
+.function-calc(@expr) {
+    return: tired, won΄t calculate;
+}
+
+div {
+    width: calc(50% - 20px);
+    color: hsl(0, 50%, 25%);
+}
+
+span {
+    color: hsl(0, 50%, 25%);
+
+    // override `hsl` locally:
+    .function-hsl(@h, @s, @l) {
+        return: hsla(@h, @l, @s, 1); // happy debugging!
+    }
+}
+```
+CSS result:
+```css
+div {
+    width: tired, won΄t calculate;
+    color: #602020;
+}
+span {
+    color: #9f6060;
+}
+```
+
+#### More examples
+
+See [included tests](test/less) for more advanced examples.
+
+## Options
+
+##### `--always-override` / `alwaysOverride`
+>Always override native CSS or Less functions
+
+Shorthand: `-a`. For performance reasons (mixin lookup is a costly process) certain CSS and built-in Less functions are marked as not overridable by the custom functions. Setting this option allows you to override *any*. Note however, this can significantly increase compilation time even if you don't override anything (for a typical Less framework/codebase this option may result in about 20% performance hit).
+
+The list of functions not overridable w/o `-a` can be found [here](lib/no-overrides.js).
+
+##### `--globals-only` / `globalsOnly`
+>Use only global scope definitions
+
+Shorthand: `-g`. By default the plugin searches for a possible function definition(s) starting from the current scope upwards (i.e. standard Less scoping). If your Less code is heavy on using too deep nesting and/or too many local mixins, such scope-aware lookup may negatively affect compilation time. This option allows you to restrict the search to a functions explicitly defined in the global scope.
+
+For an average Less source code the performance difference is insignificant (unless `-a` option is also set), so normally you don't need this option (consider it as "experimental") unless you're hunting for every single bit of compilation time improvement.
+
+## Implementation and Compatibility
+
+To deliver its functionality this plugin has to use certain hackish tricks and methods a standard Less plugin is not supposed to use (simply because a standard Less plugin is not supposed to provide such functionality at all). This makes the plugin to be quite vulnerable to possible compiler internals changes, thus it's more tied to a particular Less version than a typical plugin would be.
+
+_Currently supported Less versions are `2.4.0` and `2.5.0` (`2.5.0` is recommended)._
+
+## Future
+
+Because of the [implementation details](https://github.com/seven-phases-max/less-plugin-functions/tree/tmp#implementation-and-compatibility) and sightly confusing function definition syntax, this functionality/feature ideally should be moved into the Less core (not necessarily using the same syntax).
+
+See corresponding feature request and related discussion at [#538](https://github.com/less/less.js/issues/538). Please, do not hesitate to put your `+1` there if you find this functionality valuable.
