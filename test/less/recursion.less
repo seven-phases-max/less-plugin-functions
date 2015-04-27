@@ -1,0 +1,20 @@
+
+.function-foo(@i) {
+    return: foo end @i;
+}
+
+.function-foo(@i) when (@i < 50) {
+    return: foo(@i + 1);
+}
+
+.function-bar(@i) {
+    return: bar end @i;
+    & when (@i < 50) {
+        return: bar(@i + 1);
+    }
+}
+
+recursion {
+    foo: foo(0);
+    bar: bar(0);
+}

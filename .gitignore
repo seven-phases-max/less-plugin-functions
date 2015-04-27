@@ -1,0 +1,16 @@
+# common
+*~
+
+# OS and editors
+.DS_Store
+._*
+thumbs.db
+
+# project specific
+~*
+*.cmd
+test/tmp
+
+# npm
+node_modules
+npm-debug.log

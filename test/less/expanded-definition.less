@@ -1,0 +1,18 @@
+
+.a() {
+    .b() {
+        .c() {
+            .function-foo(@a) {
+                return: foo @a;
+            }
+        }
+    }
+}
+
+.a;
+.b;
+.c;
+
+expanded-definition {
+    foo: foo(1);
+}

@@ -1,0 +1,6 @@
+basic-namespaced {
+  foo: local 1;
+  abs: local 2;
+  rgb: #030405;
+  rgz: rgz(6);
+}

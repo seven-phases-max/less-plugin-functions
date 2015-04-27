@@ -1,0 +1,16 @@
+
+.function-foo(@i) {
+    return: bar(@i);
+}
+
+.function-bar(@i) {
+    return: baz(@i);
+}
+
+.function-baz(@i) {
+    return: baz @i;
+}
+
+chain {
+    foo: foo(1);
+}

@@ -1,0 +1,22 @@
+
+.function-foo(@a) {
+    return+: foo @a;
+    return+: 2;
+    return+: 3;
+}
+
+.function-bar(@a) {
+    return+: bar @a;
+    return+: 2;
+}
+
+.function-bar(@a) {
+    return+: 3;
+    return+: 4;
+}
+
+
+merge {
+    foo: foo(1);
+    bar: bar(1);
+}

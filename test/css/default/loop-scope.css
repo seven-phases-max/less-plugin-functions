@@ -1,0 +1,20 @@
+loop-scope {
+  forward--1: 1 1;
+  forward--2: 2 2;
+  forward--3: 3 3;
+  forward--4: 4 4;
+  forward--5: 5 5;
+  forward--6: 6 6;
+  forward--7: 7 7;
+  forward--8: 8 8;
+  forward--9: 9 9;
+  backward-1: 1 1;
+  backward-2: 2 2;
+  backward-3: 3 3;
+  backward-4: 4 4;
+  backward-5: 5 5;
+  backward-6: 6 6;
+  backward-7: 7 7;
+  backward-8: 8 8;
+  backward-9: 9 9;
+}

@@ -1,0 +1,43 @@
+
+.function-saturn(@color, @depth) {
+    return: desaturate(@color, sqrt(@depth));
+}
+
+misc {
+    1: lighten(saturn(red, 12%), 34%);
+}
+
+// ............................................................
+
+.in-parameter-rgba(@a: rgba(1, 2, 3, .4)) {
+    1: @a;
+}
+
+.in-parameter-rgbb(@a: rgbb(1, 2, 3, .4)) {
+    2: @a;
+}
+
+.function-rgba(@r, @g, @b, @a) {
+    return: overriden rgba @r @g @b @a;
+}
+
+misc-in-parameter {
+    // .in-parameter-rgba; // FIXME: not yet, see less/less.js#2574
+    .in-parameter-rgbb;
+}
+
+// ............................................................
+
+.in-guard() when (very-true()) {
+    1: correct;
+}
+
+.function-very-true() {
+    return: true;
+}
+
+misc-in-guard {
+    // .in-guard; // FIXME: not yet, see less/less.js#2574
+}
+
+

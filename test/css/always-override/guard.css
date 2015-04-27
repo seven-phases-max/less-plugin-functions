@@ -1,0 +1,4 @@
+guard {
+  foo1: default foo 1;
+  foo2: guarded foo 2;
+}

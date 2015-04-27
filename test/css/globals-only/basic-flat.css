@@ -1,0 +1,6 @@
+basic-flat {
+  foo: global 1;
+  abs: global 2;
+  rgb: #030405;
+  rgz: rgz(6);
+}

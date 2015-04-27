@@ -1,0 +1,22 @@
+
+// NOTE: does not work with -g option
+
+ll-1 {
+    foo: foo();
+    @var: 33%;
+
+    .function-foo() {
+        return: @var;
+    }
+}
+
+ll-2 {
+    foo: foo();
+    @var: @a;
+    @a: 100%;
+    
+    .function-foo() {
+        return: @var;
+        @a: 42%;
+    }
+}

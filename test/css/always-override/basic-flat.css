@@ -1,0 +1,6 @@
+basic-flat {
+  foo: local 1;
+  abs: local 2;
+  rgb: local 3 4 5;
+  rgz: rgz(6);
+}

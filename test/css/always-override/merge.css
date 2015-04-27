@@ -1,0 +1,4 @@
+merge {
+  foo: foo 1, 2, 3;
+  bar: bar 1, 2, 3, 4;
+}

@@ -1,0 +1,27 @@
+
+// Sort of confusing, but I really do not want to
+// use `@return` instead of `return` to change this
+
+.implicit-return-1 {
+    // NOTE: works with -l option only!
+    foo: foo();
+
+    .do-something() {
+        return: magic;
+    }
+
+    .function-foo() {
+        .do-something;
+    }
+}
+
+.function-bar(@-) {
+    @-();
+}
+
+.implicit-return-2 {
+    // Btw., currently (2.5.0) parser does not allow 
+    // inline DR args for a function (only via variable)
+    @-: {return: trah-tee-bee-doh};
+    bar: bar(@-);
+}

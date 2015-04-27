@@ -1,0 +1,29 @@
+
+.function-foo(@a) {
+    return: foo @a;
+}
+
+.function-foo(@a, @b) {
+    return: foo @a @b;
+}
+
+.function-bar(@a, @b: none) {
+    return: bar @a @b;
+}
+
+.function-bar(@a) {
+    return: bar @a;
+}
+
+.function-bar(@a, 5) {
+    return: bar @a explicit-5;
+}
+
+
+overloading {
+    foo-1: foo(1);
+    foo23: foo(2, 3);
+    bar-1: bar(1);
+    bar23: bar(2, 3);
+    bar45: bar(4, 5);
+}

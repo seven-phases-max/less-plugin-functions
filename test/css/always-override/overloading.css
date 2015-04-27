@@ -1,0 +1,7 @@
+overloading {
+  foo-1: foo 1;
+  foo23: foo 2 3;
+  bar-1: bar 1;
+  bar23: bar 2 3;
+  bar45: bar 4 explicit-5;
+}

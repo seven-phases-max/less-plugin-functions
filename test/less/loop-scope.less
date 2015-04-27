@@ -1,0 +1,23 @@
+
+.forward(@i: 1) when (@i < 10) {
+     forward--@{i}: fore(@i);
+    .forward(@i + 1);
+    
+    .function-fore(@value) {
+        return: @i @value;
+    }
+}
+
+.backward(@i: 9) when (@i > 0) {
+    .backward(@i - 1);
+     backward-@{i}: back(@i);
+
+    .function-back(@value) {
+        return: @i @value;
+    }
+}
+
+loop-scope {
+    .forward();
+    .backward();
+}
