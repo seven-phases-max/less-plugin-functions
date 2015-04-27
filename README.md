@@ -6,6 +6,21 @@ Write genuine [Less](http://lesscss.org) functions in Less itself.
 [![dependencies](https://david-dm.org/seven-phases-max/less-plugin-functions.svg)](https://david-dm.org/seven-phases-max/less-plugin-functions)
 [![dev dependencies](https://david-dm.org/seven-phases-max/less-plugin-functions/dev-status.svg)](https://david-dm.org/seven-phases-max/less-plugin-functions#info=devDependencies)
 
+This experimental "proof-of-concept" plugin extends [Less](http://lesscss.org) with a possibility to define functions directly in Less itself and use them just like regular [built-in functions](http://lesscss.org/functions/#functions-overview).
+```less
+// define:
+.function {
+    .foo(@x) {
+        return: @x * 2;
+    }
+}
+
+// use:
+div {
+    width: foo(21em); // -> 42em
+}
+```
+
 ## Installation
 
     npm install -g less-plugin-functions
@@ -26,6 +41,3 @@ in the [Less documentation](http://lesscss.org).
 ## Programmatic Usage
 
 See [Using a plugin in code](http://lesscss.org/usage/#plugins-using-a-plugin-in-code).
-
-
-## Options
