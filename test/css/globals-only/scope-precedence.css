@@ -1,3 +1,4 @@
 .scope-precedence {
   foo: foo();
+  bar: bar();
 }

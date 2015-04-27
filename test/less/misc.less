@@ -1,10 +1,31 @@
 
-.function-saturn(@color, @depth) {
-    return: desaturate(@color, sqrt(@depth));
+.function {
+    // don't remove `;` they are critical here
+    // (may affect actual type returned by the parser)
+    .keyword()       {return: identifier;}
+    .color-hex()     {return: #123;}
+    .color-keyword() {return: red;}
+    .number()        {return: 42%;}
+
+    .saturn(@color, @depth) {
+        return: desaturate(@color, sqrt(@depth));
+    }
+    
+    .rgba(@r, @g, @b, @a) {
+        return: overriden rgba @r @g @b @a;
+    }
+    
+    .rgbb(@r, @g, @b, @a) {
+        return: rgbb @r @g @b @a;
+    }
 }
 
 misc {
-    1: lighten(saturn(red, 12%), 34%);
+    1: iskeyword(keyword());
+    2: iscolor(color-hex());
+    3: iscolor(color-keyword());
+    4: isnumber(number());
+    5: lighten(saturn(red, 12%), 34%);
 }
 
 // ............................................................
@@ -17,13 +38,10 @@ misc {
     2: @a;
 }
 
-.function-rgba(@r, @g, @b, @a) {
-    return: overriden rgba @r @g @b @a;
-}
-
 misc-in-parameter {
-    // .in-parameter-rgba; // FIXME: not yet, see less/less.js#2574
-    .in-parameter-rgbb;
+    // FIXME: not yet, see less/less.js#2574
+    // .in-parameter-rgba;
+    // .in-parameter-rgbb;
 }
 
 // ............................................................

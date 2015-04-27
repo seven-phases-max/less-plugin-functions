@@ -1,0 +1,7 @@
+.function .foo {
+  return: "I'm foo too!";
+}
+.interp-name {
+  foo: foo();
+  bar: bar();
+}

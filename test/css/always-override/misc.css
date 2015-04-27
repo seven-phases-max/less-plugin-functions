@@ -1,6 +1,7 @@
 misc {
-  1: #feafaf;
-}
-misc-in-parameter {
-  2: rgbb(1, 2, 3, 0.4);
+  1: true;
+  2: true;
+  3: true;
+  4: true;
+  5: #feafaf;
 }
