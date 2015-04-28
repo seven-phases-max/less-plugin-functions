@@ -1,6 +1,6 @@
 {
   "name": "less-plugin-functions",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Write custom Less functions in Less itself",
   "homepage": "https://github.com/seven-phases-max/less-plugin-functions",
   "author": {

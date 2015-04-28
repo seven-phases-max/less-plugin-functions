@@ -109,7 +109,7 @@ etc.
 #### Overriding CSS and built-in Less functions
 
 Custom function definitions override CSS or [built-in](http://lesscss.org/functions/#functions-overview) Less functions of the same
-name (certain performance critical functions are not overridable by default though, see [`-a` option](https://github.com/seven-phases-max/less-plugin-functions/tree/tmp#--always-override--alwaysoverride) below for more details). That is, you can "replace"/"extend" any Less or even CSS function by your own implementation.
+name (certain performance critical functions are not overridable by default though, see [`-a` option](#--always-override--alwaysoverride) below for more details). That is, you can "replace"/"extend" any Less or even CSS function by your own implementation.
 
 For example:
 ```less
@@ -149,14 +149,14 @@ See [included tests](test/less) for more advanced examples.
 
 ## Options
 
-##### `--always-override` / `alwaysOverride`
+#### `--always-override` / `alwaysOverride`
 >Always override native CSS or Less functions
 
 Shorthand: `-a`. For performance reasons (mixin lookup is a costly process) certain CSS and built-in Less functions are marked as not overridable by the custom functions. Setting this option allows you to override *any*. Note however, this can significantly increase compilation time even if you don't override anything (for a typical Less framework/codebase this option may result in about 20% performance hit).
 
 The list of functions not overridable w/o `-a` can be found [here](lib/no-overrides.js).
 
-##### `--globals-only` / `globalsOnly`
+#### `--globals-only` / `globalsOnly`
 >Use only global scope definitions
 
 Shorthand: `-g`. By default the plugin searches for a possible function definition(s) starting from the current scope upwards (i.e. standard Less scoping). If your Less code is heavy on using too deep nesting and/or too many local mixins, such scope-aware lookup may negatively affect compilation time. This option allows you to restrict the search to a functions explicitly defined in the global scope.
