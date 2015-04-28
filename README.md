@@ -45,6 +45,7 @@ For more details on a programmatic Less plugin usage see [Using a plugin in code
 ## Feature Details
 
 Custom functions recognizable by this plugin are defined as plain Less [mixins](http://lesscss.org/features/#mixins-parametric-feature) having either `.function-` prefix or being immediate descendant of a `.function` [namespace](http://lesscss.org/features/#features-overview-feature-namespaces-and-accessors). For example the following two snippets create the same function named `bar`.
+
 Using namespace:
 ```less
 .function {
@@ -59,7 +60,7 @@ Using prefix:
 	return: red;
 }
 ```
-The defined function can be use same way and anywhere a CSS/Less function can:
+The defined function can be used same way and anywhere a CSS/Less function can:
 ```less
 div {
     background-color: bar();    // red
@@ -171,6 +172,6 @@ _Currently supported Less versions are `2.4.0` and `2.5.0` (`2.5.0` is recommend
 
 ## Future
 
-Because of the [implementation details](https://github.com/seven-phases-max/less-plugin-functions/tree/tmp#implementation-and-compatibility) and sightly confusing function definition syntax, this functionality/feature ideally should be moved into the Less core (not necessarily using the same syntax).
+Because of the [implementation details](#implementation-and-compatibility) and sightly confusing function definition syntax, this functionality/feature ideally should be moved into the Less core (not necessarily using the same syntax).
 
 See corresponding feature request and related discussion at [#538](https://github.com/less/less.js/issues/538). Please, do not hesitate to put your `+1` there if you find this functionality valuable.
