@@ -1,7 +1,7 @@
 {
   "name": "less-plugin-functions",
   "version": "0.0.2",
-  "description": "Write custom Less functions in Less itself",
+  "description": "write custom Less functions in Less itself",
   "homepage": "https://github.com/seven-phases-max/less-plugin-functions",
   "author": {
     "name": "Max Mikhailov"
