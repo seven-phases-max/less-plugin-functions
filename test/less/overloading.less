@@ -3,22 +3,22 @@
     .foo(@a) {
         return: foo @a;
     }
-    
+
     .foo(@a, @b) {
         return: foo @a @b;
     }
-    
+
     .bar(@a, @b: none) {
         return: bar @a @b;
     }
-    
+
     .bar(@a) {
         return: bar @a;
     }
-    
+
     .bar(@a, 5) {
         return: bar @a explicit-5;
-    }    
+    }
 }
 
 overloading {

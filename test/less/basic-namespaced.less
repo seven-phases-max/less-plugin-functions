@@ -3,27 +3,27 @@
     .foo(@a) {
         return: global @a;
     }
-    
+
     .abs(@a) {
         return: global @a;
     }
-    
+
     .rgb(@r, @g, @b) {
         return: global @r @g @b;
     }
 }
 
 basic-namespaced {
-    
+
     .function {
         .foo(@a) {
             return: local @a;
         }
-        
+
         .abs(@a) {
             return: local @a;
         }
-        
+
         .rgb(@r, @g, @b) {
             return: local @r @g @b;
         }
