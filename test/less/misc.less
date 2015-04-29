@@ -2,10 +2,14 @@
 .function {
     // don't remove `;` they are critical here
     // (may affect actual type returned by the parser)
-    .keyword()       {return: identifier;}
     .color-hex()     {return: #123;}
     .color-keyword() {return: red;}
     .number()        {return: 42%;}
+    .keyword()       {return: identifier;}
+    
+    .list() {
+        return: red, 1.2  3px   4% ,5 boo! identifier ;
+    }
 
     .saturn(@color, @depth) {
         return: desaturate(@color, sqrt(@depth));
@@ -21,11 +25,18 @@
 }
 
 misc {
-    1: iskeyword(keyword());
-    2: iscolor(color-hex());
-    3: iscolor(color-keyword());
-    4: isnumber(number());
-    5: lighten(saturn(red, 12%), 34%);
+
+    1: iscolor(color-hex());
+    2: iscolor(color-keyword());
+    3: isnumber(number());
+    4: iskeyword(keyword());
+    
+    5: list();
+    6: iscolor(extract(extract(list(), 1), 1));
+    7: isnumber(extract(extract(list(), 2), 2));
+    8: iskeyword(extract(extract(list(), 3), 3));
+
+    9: lighten(saturn(red, 12%), 34%);
 }
 
 // ............................................................
