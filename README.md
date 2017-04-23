@@ -70,6 +70,8 @@ div {
 ```
 Don't miss that the defined function name is `bar`, without any prefix or a dot.
 
+Additionally note that the function definitions should use only lowercase names (e.g. `.function-bar` not `.function-Bar`). Less function names are case-insensitive so for both `bar()` and `Bar()` call statements the compiler will look only for the lowercase `bar` definition  (for more details see [#1](https://github.com/seven-phases-max/less-plugin-functions/issues/1)).
+
 #### Supported functionality
 
 Since custom functions are defined as regular Less mixins, they inherit most of standard mixin behaviour and functionality. In particular:
@@ -168,7 +170,7 @@ For an average Less source code the performance difference is insignificant (unl
 
 To deliver its functionality this plugin has to use certain hackish tricks and methods a standard Less plugin is not supposed to use (simply because a standard Less plugin is not supposed to provide such functionality at all). This makes the plugin to be quite vulnerable to possible compiler internals changes, thus it's more tied to a particular Less version than a typical plugin would be.
 
-_Currently supported Less versions are `2.4.0` and `2.5.0` (`2.5.0` is recommended)._
+_Currently supported Less versions are `2.4.0` or higher._
 
 ## Future
 
