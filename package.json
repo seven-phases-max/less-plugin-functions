@@ -1,31 +1,26 @@
 {
   "name": "less-plugin-functions",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "write custom Less functions in Less itself",
   "homepage": "https://github.com/seven-phases-max/less-plugin-functions",
-  "author": {
-    "name": "Max Mikhailov"
-  },
+  "author": "Max Mikhailov",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git://github.com/seven-phases-max/less-plugin-functions.git"
-  },
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/seven-phases-max/less-plugin-functions/blob/master/LICENSE"
   },
   "main": "lib/index.js",
   "engines": {
     "node": ">=0.10.0"
   },
   "devDependencies": {
-    "diff": "^1.3.2",
-    "grunt": "^0.4.5",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-jshint": "^0.11.2",
-    "grunt-contrib-less": "^1.0.1",
-    "jit-grunt": "^0.9.1",
-    "time-grunt": "^1.1.1"
+    "diff": "^3.2.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-less": "^1.4.1",
+    "jit-grunt": "^0.10.0",
+    "time-grunt": "^1.4.0"
   },
   "keywords": [
     "less",
