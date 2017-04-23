@@ -9,3 +9,10 @@ misc {
   8: true;
   9: #feafaf;
 }
+misc-in-parameter {
+  1: rgba(1, 2, 3, 0.4);
+  2: rgbb 1 2 3 0.4;
+}
+misc-in-guard {
+  1: correct;
+}
