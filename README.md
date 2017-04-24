@@ -57,7 +57,7 @@ Using namespace:
 Using prefix:
 ```less
 .function-bar() {
-	return: red;
+    return: red;
 }
 ```
 The defined function can be used same way and anywhere a CSS/Less function can:
@@ -148,7 +148,7 @@ span {
 
 #### More examples
 
-See [included tests](test/less) for more advanced examples.
+See [included tests](test/less) for more advanced examples. Additionally see a few examples on using this plugin in conjunction with [`list-plugin-lists`](https://github.com/seven-phases-max/less-plugin-lists/blob/master/docs/for-adv.md#using-with-the-functions-plugin).
 
 ## Options
 
